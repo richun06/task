@@ -1,8 +1,5 @@
 # README
 
-![](https://i.imgur.com/DO0emrz.png)
-![](https://i.imgur.com/LeXOh2M.png)
-
 ###users
 | カラム | データ型 |
 | -------- | -------- |

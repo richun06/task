@@ -3,27 +3,24 @@
 ![](https://i.imgur.com/DO0emrz.png)
 ![](https://i.imgur.com/LeXOh2M.png)
 
-users
-
+###users
 | カラム | データ型 |
 | -------- | -------- |
-| name | string
-| email | string
-| password_digest | string
+| name | string |
+| email | string |
+| password_digest | string |
 
-tasks
-
+###tasks
 | カラム | データ型|
 | -------- | -------- |
-| user_id |
-| title | string
-| content | text
-| deadline | data
-| priority |　integer
-| status | integer
+| user_id | |
+| title | string |
+| content | text |
+| deadline | data |
+| priority |　integer |
+| status | integer |
 
-labels
-
+###labels
 | カラム | データ型 |
 | -------- | -------- |
 | name    | string     |

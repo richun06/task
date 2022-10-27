@@ -1,5 +1,10 @@
 ---
 ja:
+  tasks:
+    new:
+      title: 'タイトル'
+      content: '内容'
+
   activerecord:
     errors:
       messages:

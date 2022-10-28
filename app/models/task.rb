@@ -1,5 +1,6 @@
 class Task < ApplicationRecord
   validates :title, presence: true, length: { maximum: 20 }
   validates :content, presence: true, length: { maximum: 300 }
-  default_scope -> { order(created_at: :desc) }
+  # default_scope -> { order(created_at: :desc) }
+  # scope :deadline_sorted, -> { order(deadline: :desc) }
 end

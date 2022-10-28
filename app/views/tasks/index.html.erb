@@ -13,7 +13,7 @@
       <tr>
         <td class="class: 'task_list'"><%= task.title %></td>
         <td class="class: 'task_list'"><%= task.content %></td>
-        <td><%= task.deadline %></td>
+        <td class="class: 'task_list'"><%= task.deadline %></td>
         <td><%= link_to "詳細",task_path(task.id) %></td>
         <td><%= link_to "編集",edit_task_path(task.id) %></td>
         <td><%= link_to "削除",task_path(task.id), method: :delete %></td>

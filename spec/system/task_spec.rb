@@ -1,5 +1,6 @@
 require 'rails_helper'
 RSpec.describe 'タスク管理機能', type: :system do
+  let! (:task){FactoryBot.create(:task)}
   describe '新規作成機能' do
     context 'タスクを新規作成した場合' do
       it '作成したタスクが表示される' do
@@ -24,6 +25,17 @@ RSpec.describe 'タスク管理機能', type: :system do
         visit tasks_path
         task_list = all('.task_row')
         expect(page).to have_content 'task'
+      end
+    end
+
+    context '終了期限でソートした場合' do
+      it '終了期限の降順に一覧に表示される' do
+        task = FactoryBot.create(:third_task, deadline: "2022-09-01")
+        visit tasks_path
+        click_on "終了期限でソートする"
+        task_list = all('tbody tr')
+        expect(task_list[0]).to have_content '2022-09-01'
+
       end
     end
   end

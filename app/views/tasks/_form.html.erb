@@ -19,5 +19,9 @@
   <%= form.label :content, t('activerecord.attributes.task.content') %>
   <%= form.text_field :content %>
 </div>
+<div>
+  <%= form.label :deadline %>
+  <%= form.date_select :deadline %>
+</div>
 <%= form.submit "作成" %>
 <% end %>

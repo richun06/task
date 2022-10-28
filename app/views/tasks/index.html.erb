@@ -3,15 +3,15 @@
 <table>
   <thead>
     <tr>
-      <th>タイトル</th>
-      <th>内容</th>
+      <th><%= Task.human_attribute_name(:title) %></th>
+      <th><%= Task.human_attribute_name(:content) %></th>
     </tr>
   </thead>
   <tbody>
     <% @tasks.each do |task| %>
       <tr>
-        <td><%= task.title %></td>
-        <td><%= task.content %></td>
+        <td class="class: 'task_list'"><%= task.title %></td>
+        <td class="class: 'task_list'"><%= task.content %></td>
         <td><%= link_to "詳細",task_path(task.id) %></td>
         <td><%= link_to "編集",edit_task_path(task.id) %></td>
         <td><%= link_to "削除",task_path(task.id), method: :delete %></td>

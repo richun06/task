@@ -1,5 +1,5 @@
 <h2>詳細</h2>
-<p>タイトル:<%= @task.title %></p>
-<p>内容:<%= @task.content %></p>
+<p><%= Task.human_attribute_name(:title) %>:<%= @task.title %></p>
+<p><%= Task.human_attribute_name(:content) %>:<%= @task.content %></p>
 
 <%= link_to "一覧へ戻る",tasks_path %>

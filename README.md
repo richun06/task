@@ -21,3 +21,17 @@
 | カラム | データ型 |
 | -------- | -------- |
 | name    | string     |
+
+###herokuのデプロイ手順
+1. herokuへログイン
+* heroku login
+3. herokuアプリ作成
+* heroku create
+5. Gemインストール
+* gem 'net-smtp'
+* gem 'net-imap'
+* gem 'net-pop'
+4. step2ブランチをherokuにプッシュする
+* git push heroku step2:master
+6. herokuのテーブル作成
+* heroku run rails db:migrate

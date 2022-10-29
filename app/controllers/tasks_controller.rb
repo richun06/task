@@ -15,6 +15,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
+    # byebug
     if @task.save
       redirect_to tasks_path, notice: "タスク登録完了！"
     else
@@ -48,7 +49,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :content, :deadline)
+    params.require(:task).permit(:title, :content, :deadline).merge(status: params[:task][:status].to_i)
   end
 
 end

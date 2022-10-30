@@ -46,4 +46,39 @@ RSpec.describe 'タスク管理機能', type: :system do
       end
     end
   end
+
+  describe '検索機能' do
+    before do
+      # 必要に応じて、テストデータの内容を変更して構わない
+      FactoryBot.create(:task, title: "task")
+      FactoryBot.create(:second_task, title: "sample")
+    end
+
+    context 'タイトルであいまい検索をした場合' do
+      it "検索キーワードを含むタスクで絞り込まれる" do
+        visit tasks_path
+        # タスクの検索欄に検索ワードを入力する (例: task)
+        fill_in "search_title", with: "ta"
+        click_on "検索"
+        expect(page).to have_content 'task'
+      end
+    end
+    context 'ステータス検索をした場合' do
+      it "ステータスに完全一致するタスクが絞り込まれる" do
+        visit tasks_path
+        select "完了", from: "search_status"
+        click_on "検索"
+        expect(page).to have_content '完了'
+      end
+    end
+    context 'タイトルのあいまい検索とステータス検索をした場合' do
+      it "検索キーワードをタイトルに含み、かつステータスに完全一致するタスク絞り込まれる" do
+        visit tasks_path
+        fill_in "search_title", with: "ta"
+        select "完了", from: "search_status"
+        click_on "検索"
+        expect(page).to have_content 'task'
+      end
+    end
+  end
 end

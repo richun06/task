@@ -2,10 +2,15 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.all
+
     if params[:sort_expired]
       @tasks = @tasks.order(deadline: :desc)
     else
       @tasks = @tasks.order(created_at: :desc)
+    end
+
+    if params[:search]
+      @tasks = @tasks.title_search(params[:search][:title])
     end
   end
 

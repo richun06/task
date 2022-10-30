@@ -1,3 +1,4 @@
+# bundle exec rspec spec/system/task_spec.rb
 require 'rails_helper'
 RSpec.describe 'タスク管理機能', type: :system do
   describe '新規作成機能' do

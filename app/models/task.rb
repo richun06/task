@@ -9,4 +9,5 @@ class Task < ApplicationRecord
   # end
   scope :title_search, -> (title) { where("title LIKE ?", "%#{title}%") if title.present? }
   scope :status_search, -> (status) { where(status: status) if status.present? }
+  scope :search_and, -> (title, status) { where("title LIKE ?", "%#{title}%").where(status: status) if title.present? && status.present? }
 end

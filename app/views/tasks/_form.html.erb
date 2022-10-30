@@ -27,5 +27,9 @@
   <%= form.label :status %>
   <%= form.select :status, options_for_select(Task.statuses), {prompt: '選択してください'} %>
 </div>
+<div>
+  <%= form.label :priority %>
+  <%= form.select :priority, options_for_select(Task.priorities), {prompt: '選択してください'} %>
+</div>
 <%= form.submit "作成" %>
 <% end %>

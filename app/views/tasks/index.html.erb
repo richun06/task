@@ -7,14 +7,17 @@
 <%= form.submit "検索"%>
 <% end %>
 <p><%= notice %></p>
-<table>
+<%= link_to "新規作成",new_task_path, class: "btn btn-primary" %>
+<table class="table table-striped">
   <thead>
     <tr>
       <th><%= Task.human_attribute_name(:title) %></th>
       <th><%= Task.human_attribute_name(:content) %></th>
-      <th><%= Task.human_attribute_name(:deadline) %></th>
+      <!-- <th><%= Task.human_attribute_name(:deadline) %></th> -->
+      <th><%= link_to Task.human_attribute_name(:deadline), tasks_path(sort_expired: "true") %></th>
       <th><%= Task.human_attribute_name(:status) %></th>
-      <th><%= Task.human_attribute_name(:priority) %></th>
+      <!-- <th><%= Task.human_attribute_name(:priority) %></th> -->
+      <th><%= link_to Task.human_attribute_name(:priority), tasks_path(sort_priority: "true") %></th>
     </tr>
   </thead>
   <tbody>
@@ -25,13 +28,12 @@
         <td class="class: 'task_list'"><%= task.deadline %></td>
         <td><%= task.status %></td>
         <td><%= task.priority %></td>
-        <td><%= link_to "詳細",task_path(task.id) %></td>
-        <td><%= link_to "編集",edit_task_path(task.id) %></td>
-        <td><%= link_to "削除",task_path(task.id), method: :delete %></td>
+        <td><%= link_to "詳細",task_path(task.id), class: "btn btn-outline-primary" %></td>
+        <td><%= link_to "編集",edit_task_path(task.id), class: "btn btn-outline-success" %></td>
+        <td><%= link_to "削除",task_path(task.id), method: :delete, class: "btn btn-outline-danger" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<%= link_to "作成",new_task_path %>
-<%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %>
-<%= link_to "優先順位でソートする", tasks_path(sort_priority: "true") %>
+<%= link_to "終了期限でソートする", tasks_path(sort_expired: "true"), class: "btn btn-success" %>
+<%= link_to "優先順位でソートする", tasks_path(sort_priority: "true"), class: "btn btn-success" %>

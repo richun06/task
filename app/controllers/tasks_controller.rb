@@ -10,7 +10,7 @@ class TasksController < ApplicationController
     end
 
     if params[:search]
-      @tasks = @tasks.title_search(params[:search][:title])
+      @tasks = @tasks.title_search(params[:search][:title]).status_search(params[:search][:status])
     end
   end
 

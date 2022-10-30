@@ -8,4 +8,5 @@ class Task < ApplicationRecord
   #   where(['title LIKE(?)', "%#{params[:keyword]}%"])
   # end
   scope :title_search, -> (title) { where("title LIKE ?", "%#{title}%") if title.present? }
+  scope :status_search, -> (status) { where(status: status) if status.present? }
 end

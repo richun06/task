@@ -14,4 +14,9 @@ FactoryBot.define do
     content { 'test_content3' }
     deadline { Date.time }
   end
+  factory :fourth_task, class: Task do
+    title { 'test_title4' }
+    content { 'test_content4' }
+    priority { '高' }
+  end
 end

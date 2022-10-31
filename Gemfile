@@ -64,3 +64,4 @@ gem 'net-imap'
 gem 'net-pop'
 
 gem 'kaminari'
+gem 'faker'

@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  skip_before_action :login_required, only: [:new, :create]
 
   def index
     @tasks = Task.all.page(params[:page]).per(10)

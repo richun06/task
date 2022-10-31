@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   #     get 'search' => 'tasks#search'
   #   end
   # end
+  resources :users, only: [:new, :create]
 end

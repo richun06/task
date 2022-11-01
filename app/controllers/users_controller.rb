@@ -18,9 +18,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    redirect_to tasks_path unless params[:id] == current_user.id
     @user = User.find(params[:id])
-    @tasks = @user.tasks
+    # @tasks = @user.tasks
+    if @user != current_user
+      redirect_to tasks_path
+    end
   end
 
   private

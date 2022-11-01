@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   skip_before_action :login_required, only: [:new, :create]
 
   def index
-    @tasks = current_user.tasks.include(:user)
+    @tasks = current_user.tasks
 
     if params[:sort_expired]
       @tasks = @tasks.order(deadline: :desc)

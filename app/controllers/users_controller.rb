@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
   skip_before_action :login_required, only: [:new, :create]
+
+  def index
+    @users = User.all
+  end
 
   def new
     redirect_to user_path(session[:user_id]) if logged_in?
@@ -24,6 +28,16 @@ class UsersController < ApplicationController
       redirect_to tasks_path
     end
   end
+
+  # def update
+  #   @user = User.find(params[:id])
+  #   if @user.update(user_params)
+  #     # redirect_to users_path(@user.id)
+  #     redirect_to admin_users_path, notirce: "編集完了"
+  #   else
+  #     render :new
+  #   end
+  # end
 
   private
 

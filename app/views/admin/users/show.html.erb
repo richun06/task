@@ -1,0 +1,25 @@
+<h2>詳細</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= Task.human_attribute_name(:title) %></th>
+      <th><%= Task.human_attribute_name(:content) %></th>
+      <th><%= Task.human_attribute_name(:deadline) %></th>
+      <th><%= Task.human_attribute_name(:status) %></th>
+      <th><%= Task.human_attribute_name(:priority) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.title %></td>
+        <td><%= task.content %></td>
+        <td><%= task.deadline %></td>
+        <td><%= task.status %></td>
+        <td><%= task.priority %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to "管理一覧へ戻る",admin_users_path %>
+

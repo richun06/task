@@ -29,6 +29,11 @@ class Admin::UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = User.find(params[:id])
+    @tasks = @user.tasks
+  end
+
   def destroy
     @user = User.find(params[:id])
     @user.destroy

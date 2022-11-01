@@ -1,1 +1,1 @@
-User.create!(name:"kaminoyama", email:"sample@gmail.com", password_digest: "123456")
+User.create!(name:"kaminoyama", email:"sample@gmail.com", password_digest: "123456", admin: true)

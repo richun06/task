@@ -30,7 +30,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
-    @tasks = current_user.tasks
+    @tasks = @user.tasks
   end
 
   def destroy

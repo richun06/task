@@ -6,5 +6,9 @@
   <%= f.label :email %>
   <%= f.email_field :email %>
 
+  <%= f.label :admin %>
+  <%= f.check_box :admin %>
+
   <%= f.submit "Update" %>
 <% end %>
+<%= link_to "管理一覧へ戻る",admin_users_path %>

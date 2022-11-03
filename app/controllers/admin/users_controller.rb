@@ -19,11 +19,9 @@ class Admin::UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to admin_users_path, notirce: "編集完了"
     else
@@ -32,12 +30,10 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    @tasks = @user.tasks
+    @tasks = current_user.tasks
   end
 
   def destroy
-    @user = User.find(params[:id])
     @user.destroy
     redirect_to admin_users_path
   end
@@ -51,5 +47,9 @@ class Admin::UsersController < ApplicationController
   def if_not_admin
     redirect_to tasks_path, notice: "管理者以外はアクセスできない" unless current_user.admin == true
     # flash[:notice] = "管理者以外はアクセスできない"
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 end

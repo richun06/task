@@ -128,8 +128,6 @@ RSpec.describe 'ユーザ管理機能', type: :system do
           visit edit_admin_user_path(second_user)
           fill_in 'user[name]', with: '花子'
           fill_in 'user[email]', with: 'test_hanako@sample.com'
-          # fill_in 'user[password]', with: '111111'
-          # fill_in 'user[password_cofirmation]', with: '111111'
           click_on "Update"
           expect(page).to have_content '花子'
         end

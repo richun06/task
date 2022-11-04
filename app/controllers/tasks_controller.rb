@@ -1,7 +1,8 @@
 class TasksController < ApplicationController
+  skip_before_action :login_required, only: [:new, :create]
 
   def index
-    @tasks = Task.all.page(params[:page]).per(10)
+    @tasks = current_user.tasks
 
     if params[:sort_expired]
       @tasks = @tasks.order(deadline: :desc)
@@ -22,6 +23,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
+    @task.user_id = current_user.id
     # byebug
     if @task.save
       redirect_to tasks_path, notice: "タスク登録完了！"
@@ -56,7 +58,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :content, :deadline, :priority).merge(status: params[:task][:status].to_i, priority: params[:task][:priority].to_i)
+    params.require(:task).permit(:title, :content, :deadline, :priority, :user_id).merge(status: params[:task][:status].to_i, priority: params[:task][:priority].to_i)
   end
 
 end

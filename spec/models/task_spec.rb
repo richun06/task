@@ -1,6 +1,10 @@
 # bundle exec rspec ./spec/models/task_spec.rb
 require 'rails_helper'
 RSpec.describe 'タスクモデル機能', type: :model do
+  let!(:user) { FactoryBot.create(:user) }
+  before do
+    @current_user = User.find_by(email: "test_taro@sample.com")
+  end
   describe 'バリデーションのテスト' do
     context 'タスクのタイトルが空の場合' do
       it 'バリデーションにひっかる' do
@@ -16,16 +20,15 @@ RSpec.describe 'タスクモデル機能', type: :model do
     end
     context 'タスクのタイトルと詳細に内容が記載されている場合' do
       it 'バリデーションが通る' do
-        task = Task.new(title: '成功', content: 'テスト')
+        task = Task.new(title: '成功', content: 'テスト', user_id: @current_user.id)
         expect(task).to be_valid
       end
     end
   end
 
   describe '検索機能' do
-    # 必要に応じて、テストデータの内容を変更して構わない
-    let!(:task) { FactoryBot.create(:task, title: 'task') }
-    let!(:second_task) { FactoryBot.create(:second_task, title: "sample") }
+    let!(:task) { FactoryBot.create(:task, title: 'task', user: user) }
+    let!(:second_task) { FactoryBot.create(:second_task, title: "sample", user: user) }
     context 'scopeメソッドでタイトルのあいまい検索をした場合' do
       it "検索キーワードを含むタスクが絞り込まれる" do
         # title_seachはscopeで提示したタイトル検索用メソッドである。メソッド名は任意で構わない。

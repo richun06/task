@@ -16,5 +16,4 @@ ja:
         email: メールアドレス
         password: パスワード
         password_confirmation: 確認用パスワード
-      label:
-        name: 名前
+        admin: 管理者

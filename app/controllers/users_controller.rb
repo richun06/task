@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    # @tasks = @user.tasks
+    @tasks = @user.tasks
     if @user != current_user
       redirect_to tasks_path
     end

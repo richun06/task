@@ -13,4 +13,7 @@ class Task < ApplicationRecord
   scope :search_and, -> (title, status) { where("title LIKE ?", "%#{title}%").where(status: status) if title.present? && status.present? }
 
   enum priority: { 高:0, 中:1, 低:2 }
+
+  has_many :labelings, dependent: :destroy
+  has_many :labels, dependent: :destroy
 end

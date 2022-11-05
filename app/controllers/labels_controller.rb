@@ -27,6 +27,11 @@ class LabelsController < ApplicationController
 
   def update
     @label = Label.find(params[:id])
+    if @label.update(label_params)
+      redirect_to labels_path, notice: "編集完了！"
+    else
+      render :edit
+    end
   end
 
   def destroy

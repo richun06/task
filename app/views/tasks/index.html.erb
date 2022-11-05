@@ -20,10 +20,8 @@
       <th>ユーザー名</th>
       <th><%= Task.human_attribute_name(:title) %></th>
       <th><%= Task.human_attribute_name(:content) %></th>
-      <!-- <th><%= Task.human_attribute_name(:deadline) %></th> -->
       <th><%= link_to Task.human_attribute_name(:deadline), tasks_path(sort_expired: "true") %></th>
       <th><%= Task.human_attribute_name(:status) %></th>
-      <!-- <th><%= Task.human_attribute_name(:priority) %></th> -->
       <th><%= link_to Task.human_attribute_name(:priority), tasks_path(sort_priority: "true") %></th>
       <th><%= Label.human_attribute_name(:name) %></th>
     </tr>
@@ -47,5 +45,6 @@
     <% end %>
   </tbody>
 </table>
+<%= paginate @tasks %>
 <%= link_to "終了期限をソート", tasks_path(sort_expired: "true"), class: "btn btn-success" %>
 <%= link_to "優先順位をソート", tasks_path(sort_priority: "true"), class: "btn btn-success" %>

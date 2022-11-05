@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   skip_before_action :login_required, only: [:new, :create]
 
   def index
-    @tasks = current_user.tasks
+    @tasks = current_user.tasks.page(params[:page]).per(50)
 
     if params[:sort_expired]
       @tasks = @tasks.order(deadline: :desc)
@@ -16,7 +16,9 @@ class TasksController < ApplicationController
       @tasks = @tasks.title_search(params[:search][:title]).status_search(params[:search][:status]).search_and(params[:search][:title], params[:search][:status])
     end
 
-    @tasks = @tasks.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
+    if params[:label_id].present?
+      @tasks = @tasks.joins(:labels).where(labels: { id: params[:label_id] })
+    end
   end
 
   def new

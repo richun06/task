@@ -16,4 +16,10 @@ class Task < ApplicationRecord
 
   has_many :labellings, dependent: :destroy
   has_many :labels, through: :labellings
+
+  # scope :label_search, -> (label) {
+  #   return if label.blank?
+  #   # joins(:labels).where('labels.id = ?', label)
+  #   where(id: LabelTask.where(label_id: label).select(:task_id))
+  # }
 end

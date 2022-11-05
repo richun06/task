@@ -13,12 +13,15 @@ class TasksController < ApplicationController
     end
 
     if params[:search]
-      @tasks = @tasks.search_and(params[:search][:title], params[:search][:status]).title_search(params[:search][:title]).status_search(params[:search][:status])
+      @tasks = @tasks.title_search(params[:search][:title]).status_search(params[:search][:status]).search_and(params[:search][:title], params[:search][:status])
     end
+
+    @tasks = @tasks.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
   end
 
   def new
     @task = Task.new
+    # @labels = current_user.labels
   end
 
   def create

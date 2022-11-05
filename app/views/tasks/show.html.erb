@@ -1,7 +1,34 @@
 <h2>詳細</h2>
-<p><%= Task.human_attribute_name(:title) %>:<%= @task.title %></p>
-<p><%= Task.human_attribute_name(:content) %>:<%= @task.content %></p>
-<p><%= Task.human_attribute_name(:deadline) %>:<%= @task.deadline %></p>
-<p><%= Task.human_attribute_name(:status) %>:<%= @task.status %></p>
-<p><%= Task.human_attribute_name(:priority) %>:<%= @task.priority %></p>
+<p>
+  <strong><%= Task.human_attribute_name(:title) %></strong>
+  <%= @task.title %>
+</p>
+
+<p>
+  <strong><%= Task.human_attribute_name(:content) %></strong>
+  <%= @task.content %>
+</p>
+
+<p>
+  <strong><%= Task.human_attribute_name(:deadline) %></strong>
+  <%= @task.deadline %>
+</p>
+
+<p>
+  <strong><%= Task.human_attribute_name(:status) %></strong>
+  <%= @task.status %>
+</p>
+
+<p>
+  <strong><%= Task.human_attribute_name(:priority) %></strong>
+  <%= @task.priority %>
+</p>
+
+<p>
+  <strong><%= Label.human_attribute_name(:name) %></strong>
+  <% @task.labels.each do |label| %>
+    <td>・<%= label.name %></td>
+  <% end %>
+</p>
+
 <%= link_to "一覧へ戻る",tasks_path %>

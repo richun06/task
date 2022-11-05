@@ -31,5 +31,8 @@
   <%= form.label :priority %>
   <%= form.select :priority, options_for_select(Task.priorities), {prompt: '選択してください'} %>
 </div>
+<div>
+  <%= form.collection_check_boxes(:label_ids, Label.all, :id, :name) %>
+</div>
 <%= form.submit "作成" %>
 <% end %>

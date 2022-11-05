@@ -8,9 +8,9 @@
   <tbody>
     <% @labels.each do |label| %>
       <tr>
-        <td>
-          <%= label.name %>
-        </td>
+        <td><%= label.name %></td>
+        <td><%= link_to "編集",edit_label_path(label.id) %></td>
+        <td><%= link_to "削除",label_path(label.id), method: :delete %></td>
       </tr>
     <% end %>
   </tbody>

@@ -1,0 +1,17 @@
+<h2>ラベル一覧</h2>
+<table>
+  <thead>
+    <tr>
+      <th><%= Label.human_attribute_name(:name) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @labels.each do |label| %>
+      <tr>
+        <td>
+          <%= label.name %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

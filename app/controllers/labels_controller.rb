@@ -36,6 +36,8 @@ class LabelsController < ApplicationController
 
   def destroy
     @label = Label.find(params[:id])
+    @label.destroy
+    redirect_to labels_path, notice: "削除完了"
   end
 
   private

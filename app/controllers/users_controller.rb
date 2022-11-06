@@ -29,16 +29,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # def update
-  #   @user = User.find(params[:id])
-  #   if @user.update(user_params)
-  #     # redirect_to users_path(@user.id)
-  #     redirect_to admin_users_path, notirce: "編集完了"
-  #   else
-  #     render :new
-  #   end
-  # end
-
   private
 
   def set_user

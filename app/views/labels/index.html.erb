@@ -1,0 +1,18 @@
+<h2>ラベル一覧</h2>
+<%= link_to "ラベル新規作成", new_label_path %>
+<table>
+  <thead>
+    <tr>
+      <th><%= Label.human_attribute_name(:name) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @labels.each do |label| %>
+      <tr>
+        <td><%= label.name %></td>
+        <td><%= link_to "編集",edit_label_path(label.id) %></td>
+        <td><%= link_to "削除",label_path(label.id), method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

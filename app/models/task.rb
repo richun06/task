@@ -13,4 +13,13 @@ class Task < ApplicationRecord
   scope :search_and, -> (title, status) { where("title LIKE ?", "%#{title}%").where(status: status) if title.present? && status.present? }
 
   enum priority: { 高:0, 中:1, 低:2 }
+
+  has_many :labellings, dependent: :destroy
+  has_many :labels, through: :labellings
+
+  # scope :label_search, -> (label) {
+  #   return if label.blank?
+  #   # joins(:labels).where('labels.id = ?', label)
+  #   where(id: LabelTask.where(label_id: label).select(:task_id))
+  # }
 end

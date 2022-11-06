@@ -3,7 +3,6 @@
     <div id="error_explanation">
       <h2><%= @task.errors.count %>件のエラーがあります。</h2>
       <ul>
-
       <% @task.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
@@ -30,6 +29,9 @@
 <div>
   <%= form.label :priority %>
   <%= form.select :priority, options_for_select(Task.priorities), {prompt: '選択してください'} %>
+</div>
+<div>
+  <%= form.collection_check_boxes(:label_ids, Label.all, :id, :name) %>
 </div>
 <%= form.submit "作成" %>
 <% end %>

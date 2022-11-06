@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   skip_before_action :login_required, only: [:new, :create]
 
   def index
-    @tasks = current_user.tasks
+    @tasks = current_user.tasks.page(params[:page]).per(50)
 
     if params[:sort_expired]
       @tasks = @tasks.order(deadline: :desc)
@@ -13,12 +13,17 @@ class TasksController < ApplicationController
     end
 
     if params[:search]
-      @tasks = @tasks.search_and(params[:search][:title], params[:search][:status]).title_search(params[:search][:title]).status_search(params[:search][:status])
+      @tasks = @tasks.title_search(params[:search][:title]).status_search(params[:search][:status]).search_and(params[:search][:title], params[:search][:status])
+    end
+
+    if params[:label_id].present?
+      @tasks = @tasks.joins(:labels).where(labels: { id: params[:label_id] })
     end
   end
 
   def new
     @task = Task.new
+    # @labels = current_user.labels
   end
 
   def create
@@ -58,7 +63,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :content, :deadline, :priority, :user_id).merge(status: params[:task][:status].to_i, priority: params[:task][:priority].to_i)
+    params.require(:task).permit(:title, :content, :deadline, :priority, :user_id, { label_ids: [] }).merge(status: params[:task][:status].to_i, priority: params[:task][:priority].to_i)
   end
 
 end
